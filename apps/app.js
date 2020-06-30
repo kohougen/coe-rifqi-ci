@@ -9,7 +9,7 @@ const getContainerList = async () => {
   let containerArray = [];
   const containerList = await dockerService.listAllContainers();
   for (let container of containerList) {
-    let containerName = container['Names'][0].split('/')[1];
+    let containerName = container.Names[0].split('/')[1];
     if (!containerName.includes('ecs-demo-app') && containerName !== 'ecs-agent') {
       let containerInfo = await dockerService.getContainer(container['Id']);
       containerArray.push(containerInfo);
