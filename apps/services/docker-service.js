@@ -29,7 +29,7 @@ class DockerService {
     }
   }
 
-  async getContainer(id) {
+  async getContainer (id) {
     let container, containerData;
     try {
       container = docker.getContainer(id);
