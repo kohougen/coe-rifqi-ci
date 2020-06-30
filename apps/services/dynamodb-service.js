@@ -22,7 +22,7 @@ class DynamoDbService {
     }
   }
 
-  async putItem(itemData) {
+  async putItem (itemData) {
     let params = {
       TableName: tableName,
       Item: itemData
