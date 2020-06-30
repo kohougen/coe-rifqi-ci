@@ -13,7 +13,6 @@ const docker = new Docker({
 });
 
 class DockerService {
-  constructor() { }
 
   async listAllContainers() {
     let containers;
