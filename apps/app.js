@@ -9,14 +9,14 @@ const getContainerList = async () => {
   let containerArray = [];
   const containerList = await dockerService.listAllContainers();
   for (let container of containerList) {
-    let containerName = container['Names'][0].split('/')[1];
+    let containerName = container.Names[0].split('/')[1];
     if (!containerName.includes('ecs-demo-app') && containerName !== 'ecs-agent') {
       let containerInfo = await dockerService.getContainer(container['Id']);
       containerArray.push(containerInfo);
     }
   }
   return containerArray;
-}
+};
 
 const filterEnvAndSecrets = (envs) => {
   const secrets = {};
@@ -31,7 +31,7 @@ const filterEnvAndSecrets = (envs) => {
     }
   }
   return { secrets, variables };
-}
+};
 
 const putData = async (container) => {
   try {
@@ -51,7 +51,7 @@ const putData = async (container) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 const deleteItem = async (containerId) => {
   await dynamoDbService.deleteItem(clusterName, containerId);
@@ -76,7 +76,7 @@ const main = async () => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 main()
   .catch(err => console.error(JSON.stringify(err)));

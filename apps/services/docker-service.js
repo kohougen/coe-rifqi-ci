@@ -13,7 +13,6 @@ const docker = new Docker({
 });
 
 class DockerService {
-  constructor() { }
 
   async listAllContainers() {
     let containers;
@@ -29,7 +28,7 @@ class DockerService {
     }
   }
 
-  async getContainer(id) {
+  async getContainer (id) {
     let container, containerData;
     try {
       container = docker.getContainer(id);

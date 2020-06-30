@@ -19,7 +19,13 @@
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "semistandard": "^14.2.2"
+    "eslint": "^7.3.1",
+    "eslint-config-semistandard": "^15.0.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
   },
   "dependencies": {
     "aws-sdk": "^2.707.0",
