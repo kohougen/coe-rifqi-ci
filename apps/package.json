@@ -18,9 +18,12 @@
   "author": "Abdul Rifqi Al Abqary",
   "license": "ISC",
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "semistandard": "^14.2.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "aws-sdk": "^2.707.0",
+    "dockerode": "^3.2.0",
+    "typedi": "^0.8.0"
   }
 }
