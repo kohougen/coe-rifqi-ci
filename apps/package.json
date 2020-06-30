@@ -1,0 +1,26 @@
+{
+  "name": "verifyci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cac-csd/coe-rifqi-sandbox/tree/ci-verify"
+  },
+  "keywords": [
+    "nodejs",
+    "ci"
+  ],
+  "author": "Abdul Rifqi Al Abqary",
+  "license": "ISC",
+  "devDependencies": {
+    "semistandard": "^14.2.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
