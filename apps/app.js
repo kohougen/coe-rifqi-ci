@@ -53,7 +53,7 @@ const putData = async (container) => {
   }
 }
 
-const deleteItem = async(containerId) => {
+const deleteItem = async (containerId) => {
   try {
     await dynamoDbService.deleteItem(clusterName, containerId);
     console.log('Delete success...');
