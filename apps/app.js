@@ -16,7 +16,7 @@ const getContainerList = async () => {
     }
   }
   return containerArray;
-}
+};
 
 const filterEnvAndSecrets = (envs) => {
   const secrets = {};
@@ -31,7 +31,7 @@ const filterEnvAndSecrets = (envs) => {
     }
   }
   return { secrets, variables };
-}
+};
 
 const putData = async (container) => {
   try {
@@ -51,7 +51,7 @@ const putData = async (container) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 const deleteItem = async (containerId) => {
   await dynamoDbService.deleteItem(clusterName, containerId);
@@ -76,7 +76,7 @@ const main = async () => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 main()
   .catch(err => console.error(JSON.stringify(err)));
