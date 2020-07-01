@@ -14,3 +14,4 @@ jobs:
         with:
           reporter: github-pr-review # Change reporter.
           workdir: apps/
+          eslint_flags: 'apps/'
