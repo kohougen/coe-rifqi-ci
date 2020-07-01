@@ -34,23 +34,19 @@ const filterEnvAndSecrets = (envs) => {
 };
 
 const putData = async (container) => {
-  try {
-    const { Labels: labels, Env } = container.Config;
-    const { variables, secrets } = filterEnvAndSecrets(Env);
-    const containerName = container['Name'].split('/')[1];
-    let itemData = {
-      clusterName,
-      containerId: container.Id,
-      containerName,
-      labels,
-      variables,
-      secrets
-    }
-    await dynamoDbService.putItem(itemData);
-    console.log('Save success...');
-  } catch (err) {
-    throw err;
+  const { Labels: labels, Env } = container.Config;
+  const { variables, secrets } = filterEnvAndSecrets(Env);
+  const containerName = container['Name'].split('/')[1];
+  let itemData = {
+    clusterName,
+    containerId: container.Id,
+    containerName,
+    labels,
+    variables,
+    secrets
   }
+  await dynamoDbService.putItem(itemData);
+  console.log('Save success...');
 };
 
 const deleteItem = async (containerId) => {
@@ -59,22 +55,18 @@ const deleteItem = async (containerId) => {
 };
 
 const main = async () => {
-  try {
-    console.log('Get containers list...');
-    const containers = await getContainerList();
-    console.log(JSON.stringify(containers));
-    for (let container of containers) {
-      if (container.State.Status === 'exited') {
-        console.log(`Delete container ${clusterName}-${container.Id} data...`)
-        deleteItem(container.Id);
-      }
-      if (container.State.Status === 'running') {
-        console.log('Save containers data to db...')
-        putData(container);
-      }
+  console.log('Get containers list...');
+  const containers = await getContainerList();
+  console.log(JSON.stringify(containers));
+  for (let container of containers) {
+    if (container.State.Status === 'exited') {
+      console.log(`Delete container ${clusterName}-${container.Id} data...`)
+      deleteItem(container.Id);
     }
-  } catch (err) {
-    throw err;
+    if (container.State.Status === 'running') {
+      console.log('Save containers data to db...')
+      putData(container);
+    }
   }
 };
 
