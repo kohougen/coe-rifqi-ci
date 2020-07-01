@@ -36,15 +36,15 @@ const filterEnvAndSecrets = (envs) => {
 const putData = async (container) => {
   const { Labels: labels, Env } = container.Config;
   const { variables, secrets } = filterEnvAndSecrets(Env);
-  const containerName = container['Name'].split('/')[1];
-  let itemData = {
+  const containerName = container.Name.split('/')[1];
+  const itemData = {
     clusterName,
     containerId: container.Id,
     containerName,
     labels,
     variables,
     secrets
-  }
+  };
   await dynamoDbService.putItem(itemData);
   console.log('Save success...');
 };
@@ -58,13 +58,13 @@ const main = async () => {
   console.log('Get containers list...');
   const containers = await getContainerList();
   console.log(JSON.stringify(containers));
-  for (let container of containers) {
+  for (const container of containers) {
     if (container.State.Status === 'exited') {
-      console.log(`Delete container ${clusterName}-${container.Id} data...`)
+      console.log(`Delete container ${clusterName}-${container.Id} data...`);
       deleteItem(container.Id);
     }
     if (container.State.Status === 'running') {
-      console.log('Save containers data to db...')
+      console.log('Save containers data to db...');
       putData(container);
     }
   }
