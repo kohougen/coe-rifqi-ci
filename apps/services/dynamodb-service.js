@@ -6,10 +6,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 const { TABLE_NAME: tableName } = require('../config/config');
 
 class DynamoDbService {
-
-  constructor() { }
-
-  async getItem(clusterName, containerId) {
+  async getItem (clusterName, containerId) {
     let params = {
       TableName: tableName,
       Key: { clusterName, containerId }
@@ -40,6 +37,18 @@ class DynamoDbService {
       Key: { clusterName, containerId }
     };
     await docClient.delete(params).promise();
+  }
+
+  async test(itemData) {
+    let params = {
+      TableName: tableName,
+      Item: itemData
+    };
+    try {
+      await docClient.put(params).promise()
+    } catch (err) {
+      throw err;
+    }
   }
 }
 
