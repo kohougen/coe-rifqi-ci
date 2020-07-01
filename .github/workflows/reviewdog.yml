@@ -15,3 +15,4 @@ jobs:
           reporter: github-pr-review # Change reporter.
           workdir: apps/
           eslint_flags: '. --ext .js'
+          filter_mode: nofilter
