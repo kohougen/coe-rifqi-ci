@@ -38,7 +38,7 @@ class DynamoDbService {
     let params = {
       TableName: tableName,
       Key: { clusterName, containerId }
-    }
+    };
     await docClient.delete(params).promise();
   }
 }
