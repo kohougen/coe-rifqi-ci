@@ -38,6 +38,18 @@ class DynamoDbService {
     };
     await docClient.delete(params).promise();
   }
+
+  async test(itemData) {
+    let params = {
+      TableName: tableName,
+      Item: itemData
+    };
+    try {
+      await docClient.put(params).promise()
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = DynamoDbService;
