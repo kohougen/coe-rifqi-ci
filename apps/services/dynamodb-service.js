@@ -26,7 +26,7 @@ class DynamoDbService {
     let params = {
       TableName: tableName,
       Item: itemData
-    }
+    };
     try {
       await docClient.put(params).promise();
     } catch (err) {
