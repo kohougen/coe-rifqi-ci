@@ -28,7 +28,7 @@ class DynamoDbService {
       Item: itemData
     };
     try {
-      await docClient.put(params).promise();
+      await docClient.put(params).promise()
     } catch (err) {
       throw err;
     }
