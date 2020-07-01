@@ -16,6 +16,7 @@ jobs:
           workdir: apps/
           eslint_flags: '. --ext .js'
           filter_mode: nofilter
+          fail_on_error: true
 
   standard:
     name: runner / standard
@@ -39,4 +40,4 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd apps 
-          npx semistandard | reviewdog -reporter=github-pr-review -f=standardjs -filter-mode=nofilter
+          npx semistandard | reviewdog -reporter=github-pr-review -f=standardjs -filter-mode=nofilter -fail-on-error
