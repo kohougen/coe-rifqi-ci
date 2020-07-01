@@ -22,13 +22,13 @@ class DynamoDbService {
     }
   }
 
-  async putItem(itemData) {
+  async putItem (itemData) {
     let params = {
       TableName: tableName,
       Item: itemData
-    }
+    };
     try {
-      await docClient.put(params).promise();
+      await docClient.put(params).promise()
     } catch (err) {
       throw err;
     }
@@ -36,14 +36,10 @@ class DynamoDbService {
 
   async deleteItem(clusterName, containerId) {
     let params = {
-      TableName : tableName,
+      TableName: tableName,
       Key: { clusterName, containerId }
-    }
-    try {
-      await docClient.delete(params).promise();
-    } catch (err) {
-      throw err;
-    }
+    };
+    await docClient.delete(params).promise();
   }
 }
 

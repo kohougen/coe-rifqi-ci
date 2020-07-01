@@ -13,12 +13,11 @@ const docker = new Docker({
 });
 
 class DockerService {
-
-  async listAllContainers() {
+  async listAllContainers () {
     let containers;
-    let opts = {
+    const opts = {
       all: true
-    }
+    };
     try {
       containers = await docker.listContainers(opts);
       return containers;
