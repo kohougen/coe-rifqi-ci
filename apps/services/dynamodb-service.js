@@ -36,14 +36,10 @@ class DynamoDbService {
 
   async deleteItem(clusterName, containerId) {
     let params = {
-      TableName : tableName,
+      TableName: tableName,
       Key: { clusterName, containerId }
     }
-    try {
-      await docClient.delete(params).promise();
-    } catch (err) {
-      throw err;
-    }
+    await docClient.delete(params).promise();
   }
 }
 
