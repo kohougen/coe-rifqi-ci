@@ -7,48 +7,28 @@ const { TABLE_NAME: tableName } = require('../config/config');
 
 class DynamoDbService {
   async getItem (clusterName, containerId) {
-    let params = {
+    const params = {
       TableName: tableName,
       Key: { clusterName, containerId }
     };
-    try {
-      const { Item } = await docClient.get(params).promise();
-      return Item;
-    } catch (err) {
-      throw err;
-    }
+    const { Item } = await docClient.get(params).promise();
+    return Item;
   }
 
   async putItem (itemData) {
-    let params = {
+    const params = {
       TableName: tableName,
       Item: itemData
     };
-    try {
-      await docClient.put(params).promise()
-    } catch (err) {
-      throw err;
-    }
+    await docClient.put(params).promise();
   }
 
-  async deleteItem(clusterName, containerId) {
-    let params = {
+  async deleteItem (clusterName, containerId) {
+    const params = {
       TableName: tableName,
       Key: { clusterName, containerId }
     };
     await docClient.delete(params).promise();
-  }
-
-  async test(itemData) {
-    let params = {
-      TableName: tableName,
-      Item: itemData
-    };
-    try {
-      await docClient.put(params).promise()
-    } catch (err) {
-      throw err;
-    }
   }
 }
 
